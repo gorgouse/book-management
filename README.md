@@ -32,6 +32,7 @@ technology
 
 
 UI side:
+UI library: Ant-design 
 (1) from project structure, we have 3 components APP component, BookList component and Book component
 ![image](https://github.com/gorgouse/book-management/assets/62230476/9b03d40d-0a54-484e-a2a3-4c6412059e21)
 
