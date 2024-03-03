@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="905b4c72-2013-40b3-bf94-e089960342e1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../Gorgeous/development/software/apache-maven-3.6.1" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2d4kujv9cfreQdd8ETtMj0d4A3h" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.BookServiceApplication (1)">
+    <configuration name="BookServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="bm.BookServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="book-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="bm.BookServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BookServiceApplication (1)" />
+        <item itemvalue="Spring Boot.BookServiceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="905b4c72-2013-40b3-bf94-e089960342e1" name="Default Changelist" comment="" />
+      <created>1709274962260</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709274962260</updated>
+      <workItem from="1709274963503" duration="7053000" />
+      <workItem from="1709431641731" duration="1514000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="627" y="200" key="#com.intellij.ide.util.MemberChooser" timestamp="1709281663484">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="627" y="200" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1709281663484" />
+    <state width="1493" height="176" key="GridCell.Tab.0.bottom" timestamp="1709466985091">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1493" height="176" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1709466985091" />
+    <state width="1493" height="176" key="GridCell.Tab.0.center" timestamp="1709466985091">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1493" height="176" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1709466985091" />
+    <state width="1493" height="176" key="GridCell.Tab.0.left" timestamp="1709466985089">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1493" height="176" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1709466985089" />
+    <state width="1493" height="176" key="GridCell.Tab.0.right" timestamp="1709466985091">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1493" height="176" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1709466985091" />
+    <state x="270" y="50" key="SettingsEditor" timestamp="1709277470436">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="270" y="50" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1709277470436" />
+    <state x="449" y="232" key="com.intellij.ide.util.TipDialog" timestamp="1709466950503">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="449" y="232" key="com.intellij.ide.util.TipDialog/0.0.1536.816@0.0.1536.816" timestamp="1709466950503" />
+    <state x="593" y="193" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1709278526479">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="593" y="193" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.816@0.0.1536.816" timestamp="1709278526479" />
+  </component>
+</project>
