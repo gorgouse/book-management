@@ -17,7 +17,6 @@ import java.util.List;
  * @Description:
  * @Version: 1.0
  */
-@CrossOrigin
 @RestController
 @RequestMapping("/book")
 public class BookController {
