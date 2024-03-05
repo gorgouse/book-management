@@ -1,6 +1,8 @@
 package bm.service;
 
-import bm.model.Book;
+import bm.entity.dto.book.BookAddingDTO;
+import bm.entity.dto.book.BookUpdatingDTO;
+import bm.entity.model.Book;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -12,11 +14,11 @@ import java.util.List;
  * @Version: 1.0
  */
 public interface BookService extends IService<Book> {
-    boolean addBook( Book book );
+    boolean addBook( BookAddingDTO bookAddingDTO );
 
     boolean deleteBook( Long id );
 
-    int updateBook( Book book );
+    int updateBook( BookUpdatingDTO bookUpdatingDTO );
 
     Book retrieveBookById( Long id );
 

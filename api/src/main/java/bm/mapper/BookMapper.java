@@ -1,8 +1,7 @@
 package bm.mapper;
 
-import bm.model.Book;
+import bm.entity.model.Book;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @Author: Gorgeous

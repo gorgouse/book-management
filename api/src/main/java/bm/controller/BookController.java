@@ -1,7 +1,10 @@
 package bm.controller;
 
-import bm.model.Book;
+import bm.entity.dto.book.BookAddingDTO;
+import bm.entity.dto.book.BookUpdatingDTO;
+import bm.entity.model.Book;
 import bm.service.BookService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,12 +27,12 @@ public class BookController {
 
     /**
      * Create a new book
-     * @param book
+     * @param bookAddingDTO
      * @return
      */
     @PostMapping("/addBook")
-    public boolean addBook( @RequestBody Book book){
-        return bookService.addBook(book);
+    public boolean addBook( @RequestBody @Validated BookAddingDTO bookAddingDTO){
+        return bookService.addBook(bookAddingDTO);
     }
 
     /**
@@ -44,12 +47,12 @@ public class BookController {
 
     /**
      * Update a book's details
-     * @param book
+     * @param bookUpdatingDTO
      * @return
      */
     @PatchMapping("/updateBook")
-    public int updateBook(@RequestBody Book book){
-        return bookService.updateBook(book);
+    public int updateBook(@RequestBody @Validated BookUpdatingDTO bookUpdatingDTO){
+        return bookService.updateBook(bookUpdatingDTO);
     }
 
     /**
