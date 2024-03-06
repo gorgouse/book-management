@@ -3,7 +3,7 @@ import Book from '../Book'
 import { useEffect, useState } from 'react';
 
 
-function BookList() {
+function BookList({...props}) {
 
   const [bookList, setBookList] = useState([]);
 
@@ -23,7 +23,7 @@ function BookList() {
     <div>
       {
         bookList.map((book) => {
-          return <Book book={book} retrieveBooks={retrieveBooks} />
+          return <Book book={book} {...props} retrieveBooks={retrieveBooks} />
         })
       }
     </div>

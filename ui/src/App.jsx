@@ -1,53 +1,44 @@
 import './App.css';
 import React, { useState } from 'react';
 import BookList from './components/BookList'
-import { Button, Flex, Modal, Form, Input } from 'antd';
+import InputAddBookInfo from './components/InputAddBookInfo'
+import { Button, Flex, Modal } from 'antd';
 
 
 function App() {
 
-  const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState('horizontal');
-  const onFormLayoutChange = ({ layout }) => {
-    console.log('layout', layout);
-    setFormLayout(layout);
-  };
-  const formItemLayout =
-    formLayout === 'horizontal'
-      ? {
-        labelCol: {
-          span: 4,
-        },
-        wrapperCol: {
-          span: 14,
-        },
-      }
-      : null;
+  const [bookInfo, setBookInfo] = useState([
+    { name: 'title', label: 'Title', value: '' },
+    { name: 'author', label: 'Author', value: '' },
+    { name: 'pubYear', label: 'Public year', value: '' },
+    { name: 'isbn', label: 'ISBN', value: '' }
+  ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const handSubmit = (book) => {
+  const handSubmit = () => {
+
+    const bookData = {};
+    
+    bookInfo.forEach(e => { bookData[e.name] = e.value });
 
     fetch('http://localhost:8080/book/addBook', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(book),
+      body: JSON.stringify(bookData),
     })
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error('Error:', error));
-
     setIsModalOpen(false);
   };
 
@@ -56,43 +47,36 @@ function App() {
       <Flex gap="small" wrap="wrap">
         <Button type="primary" onClick={showModal}>Create a new book</Button>
       </Flex>
-      <Modal title="Create a new book" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <Form
-          {...formItemLayout}
-          layout={formLayout}
-          form={form}
-          onValuesChange={onFormLayoutChange}
-          onFinish={handSubmit}
-          style={{ maxWidth: formLayout === 'inline' ? 'none' : 600, }}
-        >
-          <Form.Item label="Title" name='title'>
-            <Input placeholder="input title" />
-          </Form.Item>
-          <Form.Item label="Author" name='author'>
-            <Input placeholder="input author" />
-          </Form.Item>
-          <Form.Item label="Public year" name='pubYear'>
-            <Input placeholder="input public year" />
-          </Form.Item>
-          <Form.Item label="ISBN" name='isbn'>
-            <Input placeholder="input ISBN" />
-          </Form.Item>
 
-          <Form.Item
-            wrapperCol={{
-              offset: 6,
-              span: 16,
-            }}
-          >
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
+      <Modal title="Create a new book" open={isModalOpen}
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handSubmit}>
+            Submit
+          </Button>
+        ]}
+      >
+        {
+          bookInfo.map(e =>
+            <InputAddBookInfo
+              bookInfo={bookInfo}
+              setBookInfo={setBookInfo}
+              name={e.name}
+              label={e.label}
+              value={e.value}
+            />
+          )
+        }
+
+      </Modal >
 
       <div>
-        <BookList />
+        <BookList     
+        bookInfo={bookInfo}
+        setBookInfo={setBookInfo} 
+        />
       </div>
     </div>
   );

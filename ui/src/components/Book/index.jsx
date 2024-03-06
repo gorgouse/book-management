@@ -5,23 +5,6 @@ import { Card, Space, Button, Modal, Form, Input } from 'antd';
 function Book({ book, retrieveBooks }) {
 
   const [curBook, setCurBook] = useState(book);
-  const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState('horizontal');
-  const onFormLayoutChange = ({ layout }) => {
-    console.log('layout', layout);
-    setFormLayout(layout);
-  };
-  const formItemLayout =
-    formLayout === 'horizontal'
-      ? {
-        labelCol: {
-          span: 4,
-        },
-        wrapperCol: {
-          span: 14,
-        },
-      }
-      : null;
 
   const [isModalDetailOpen, setIsModalDetailOpen] = useState(false);
   const showDetailModal = () => {
@@ -105,7 +88,32 @@ function Book({ book, retrieveBooks }) {
         </Card>
       </Space>
 
-      <Modal title="update the book" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      {/* update */}
+      <Modal title="update the book" open={isModalOpen}
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handSubmit}>
+            Submit
+          </Button>
+        ]}
+      >
+        {/* {
+          bookInfo.map(e =>
+            <InputAddBookInfo
+              bookInfo={bookInfo}
+              setBookInfo={setBookInfo}
+              name={e.name}
+              label={e.label}
+              value={e.value}
+            />
+          )
+        } */}
+
+      </Modal >
+
+      {/* <Modal title="update the book" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <Form
           {...formItemLayout}
           layout={formLayout}
@@ -139,10 +147,10 @@ function Book({ book, retrieveBooks }) {
             </Button>
           </Form.Item>
         </Form>
-      </Modal>
+      </Modal> */}
 
 
-      <Modal title="update the book" open={isModalDetailOpen} onOk={handleDetailOk} onCancel={handleDetailCancel}>
+      {/* <Modal title="Book Details" open={isModalDetailOpen} onOk={handleDetailOk} onCancel={handleDetailCancel}>
         <Form
           {...formItemLayout}
           layout={formLayout}
@@ -164,7 +172,7 @@ function Book({ book, retrieveBooks }) {
           </Form.Item>
 
         </Form>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

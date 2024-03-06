@@ -2,3 +2,21 @@
   padding: 20px 0 0 20px;
 }
 
+.form-input{
+    width: 300px;
+}
+
+
+.gutter-example .ant-row > div {
+  background: transparent;
+  border: 0;
+}
+.gutter-box {
+  background: #00a0e9;
+  padding: 5px 0;
+}
+
+.input-label{
+  right: 0;
+}
+
