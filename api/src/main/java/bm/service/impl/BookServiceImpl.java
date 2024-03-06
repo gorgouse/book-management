@@ -2,6 +2,7 @@ package bm.service.impl;
 
 import bm.entity.dto.book.BookAddingDTO;
 import bm.entity.dto.book.BookUpdatingDTO;
+import bm.exception.BusinessException;
 import bm.mapper.BookMapper;
 import bm.entity.model.Book;
 import bm.service.BookService;
@@ -28,11 +29,11 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
     @Override
     public Book retrieveBookById( Long id ) {
         if(Objects.isNull(id)){
-            throw new RuntimeException("id can not be empty");
+            throw new BusinessException("id can not be empty");
         }
         Book book = bookMapper.selectById(id);
         if(Objects.isNull(book)){
-            throw new RuntimeException("no book id such like "+ id);
+            throw new BusinessException("no book id such like "+ id);
         }
         return book;
     }
@@ -51,7 +52,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
     @Override
     public boolean deleteBook( Long id ) {
         if(Objects.isNull(id)){
-            throw new RuntimeException("id can not be empty");
+            throw new BusinessException("id can not be empty");
         }
         return bookMapper.deleteById(id) > 0;
     }
