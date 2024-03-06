@@ -1,6 +1,7 @@
 package bm.entity.dto.book;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,12 +15,13 @@ import javax.validation.constraints.Size;
  * @Version: 1.0
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookUpdatingDTO {
 
     @NotBlank(message = "id can not be empty")
-    private String id;
+    private Long id;
 
     @NotBlank(message = "title can not be empty")
     private String title;

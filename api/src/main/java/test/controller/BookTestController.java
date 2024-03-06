@@ -1,4 +1,4 @@
-package test;
+package test.controller;
 
 import bm.BookServiceApplication;
 import cn.hutool.json.JSONUtil;
@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @SpringBootTest(classes = BookServiceApplication.class)
 @AutoConfigureMockMvc
-public class TestBookApplication {
+public class BookTestController {
 
     @Resource
     MockMvc mockMvc;
