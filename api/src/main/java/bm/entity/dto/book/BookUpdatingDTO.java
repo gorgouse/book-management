@@ -33,7 +33,6 @@ public class BookUpdatingDTO {
     private String pubYear;
 
     @NotBlank(message = "isbn can not be empty")
-    @Size(max = 13, min = 13, message = "error isbn")
     private String isbn;
 
 }
