@@ -1,3 +1,5 @@
+package test;
+
 import bm.BookServiceApplication;
 import cn.hutool.json.JSONUtil;
 import org.junit.jupiter.api.Test;
@@ -24,7 +26,7 @@ import java.util.Map;
  */
 @SpringBootTest(classes = BookServiceApplication.class)
 @AutoConfigureMockMvc
-public class TestApplication {
+public class TestBookApplication {
 
     @Resource
     MockMvc mockMvc;
@@ -35,7 +37,7 @@ public class TestApplication {
         params.put("title","book0305");
         params.put("author","gorgeous");
         params.put("pubYear","2024");
-        params.put("isbn","1234567890123");
+        params.put("isbn","1234567890123 aa");
         mockMvc.perform(MockMvcRequestBuilders.post("/book/addBook")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -46,7 +48,8 @@ public class TestApplication {
     @Test
     public void testBookDelete() throws Exception{
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders.delete("/book/deleteBook")
-                .param("id", "17")).andExpect(MockMvcResultMatchers.status().isOk());
+                .param("id", "17")
+        ).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
