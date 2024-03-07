@@ -52,7 +52,7 @@ public class BookTestService {
 
     @Test
     public void testBookUpdate() {
-        BookUpdatingDTO bookUpdatingDTO = BookUpdatingDTO.builder().id(21L).author("gorgeous2").pubYear("2025").isbn("1234567890124").title("Love and Pleace-2").build();
+        BookUpdatingDTO bookUpdatingDTO = BookUpdatingDTO.builder().id("21").author("gorgeous2").pubYear("2025").isbn("1234567890124").title("Love and Pleace-2").build();
         int deleteRes = bookService.updateBook(bookUpdatingDTO);
         log.info("delete book operation is " + (deleteRes > 0));
     }

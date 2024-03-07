@@ -22,7 +22,7 @@ function InputAddBookInfo({ bookInfo, setBookInfo, name, label, value }) {
                 <div className='input-label'>{label}:</div>
             </Col>
             <Col className="gutter-row" span={4}>
-                <Input className='form-input' placeholder="input title" onChange={handleChange} />
+                <Input className='form-input' placeholder="input title" value={value} onChange={handleChange} />
             </Col>
         </Row>
     )
