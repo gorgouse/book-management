@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './index.css';
 import { Card, Space, Button, Modal, Form, Input } from 'antd';
-import InputUpdateBookInfo from '../InputUpdateBookInfo'
+import InputUpdateBookInfo from '../InputUpdateBookInfo/InputUpdateBookInfo'
 
-function Book({ book, retrieveBooks }) {
+function Book({ book, setBookList, retrieveBooks, deleteBook, updateBookDetail, ...props }) {
 
   const [curBook, setCurBook] = useState(book);
   const [updateBook, setUpdateBook] = useState(
@@ -55,39 +55,12 @@ function Book({ book, retrieveBooks }) {
     })
   }
 
-  // submit for updating the book
-  const handleUpdateBook = () => {
+  const handleUpdateBookDetail = () => {
+    updateBookDetail(book.id, updateBookList, setCurBook, setIsModalOpen);
+  }
 
-    const bookData = { id: book.id };
-    updateBookList.forEach(e => { bookData[e.name] = e.value });
-
-    curBook.id = book.id;
-    fetch('http://localhost:8080/book/updateBook/', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookData),
-    })
-      .then(response => {
-        response.json();
-      })
-      .then(data => {
-        setCurBook(bookData)
-
-      })
-      .catch(error => console.error('Error:', error));
-    setIsModalOpen(false);
-  };
-
-  //delete the book
-  const deleteBook = () => {
-    fetch('http://localhost:8080/book/deleteBook?id=' + curBook.id, {
-      method: 'DELETE',
-    })
-      .then(response => response.json())
-      .then(data => retrieveBooks())
-      .catch(error => console.error('Error:', error));
+  const handleDeleteBook = () => {
+    deleteBook(curBook.id, setBookList);
   }
 
   return (
@@ -98,7 +71,7 @@ function Book({ book, retrieveBooks }) {
           extra={
             <span>
               <Button className='update' type="primary" onClick={handleShowUpdateModal}>Update</Button>
-              <Button className='delete' type="primary" danger onClick={deleteBook}>delete</Button>
+              <Button className='delete' type="primary" danger onClick={handleDeleteBook}>delete</Button>
               <a className='detail' href="#" onClick={handleShowDetailsModal}>Detail</a>
             </span>}
           style={{
@@ -124,13 +97,14 @@ function Book({ book, retrieveBooks }) {
           <Button key="cancel" onClick={handleUpdateCancel}>
             Cancel
           </Button>,
-          <Button key="submit" type="primary" onClick={handleUpdateBook}>
+          <Button key="submit" type="primary" onClick={handleUpdateBookDetail}>
             Submit
           </Button>
         ]}
       >
         {updateBookList && updateBookList.map((e) =>
           <InputUpdateBookInfo
+            key={e.name}
             isDetail={false}
             updateId={updateId}
             updateBookList={updateBookList}
@@ -139,6 +113,7 @@ function Book({ book, retrieveBooks }) {
             name={e.name}
             label={e.label}
             value={e.value}
+            {...props}
           />
         )}
       </Modal>

@@ -1,68 +1,53 @@
 import './App.css';
-import React, { useMemo, useState } from 'react';
-import BookList from './components/BookList'
-import InputAddBookInfo from './components/InputAddBookInfo'
+import React, { useState, useMemo, useCallback } from 'react';
+import BookList from './components/BookList/BookList'
+import InputAddBookInfo from './components/InputAddBookInfo/InputAddBookInfo'
 import { Button, Flex, Modal } from 'antd';
 
 
-function App() {
+function App(props) {
+
+  const { deepCopyArray, addBook, cancelOpenAddModal, addBookInputChange, updateBookInfoChange } = props;
 
   const initBookData = useMemo(() => [
     { name: 'title', label: 'Title', value: '' },
     { name: 'author', label: 'Author', value: '' },
     { name: 'pubYear', label: 'Public year', value: '' },
     { name: 'isbn', label: 'ISBN', value: '' }
-  ])
-
-  const deepCopyArray = (array) => {
-    const data = { array };
-    const newData = JSON.parse(JSON.stringify(data));
-    return newData.array;
-  }
+  ], []);
 
   const [bookInfo, setBookInfo] = useState(deepCopyArray(initBookData));
 
+  const [bookList, setBookList] = useState([]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
+
+  const showModal = useCallback(() => {
     setIsModalOpen(true);
-  };
+  }, []);
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-    setBookInfo(deepCopyArray(initBookData));
-  };
+  const handleCancelOpenAddModal = useCallback(() => {
+    cancelOpenAddModal(setIsModalOpen, setBookInfo);
+  }, []);
 
-  const handAddBook = () => {
-    
-    const bookData = {};
-    bookInfo.forEach(e => { bookData[e.name] = e.value });
-    fetch('http://localhost:8080/book/addBook', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookData),
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
-    setIsModalOpen(false);
-    setBookInfo(deepCopyArray(initBookData));
+  const handleAddBook = useCallback(() => {
+    addBook(bookInfo, setIsModalOpen, setBookInfo);
+  }, [bookInfo]);
 
-  };
+
 
   return (
     <div className='App'>
       <Flex gap="small" wrap="wrap">
-        <Button type="primary" onClick={showModal}>Create a new book</Button>
+        <Button id="addBookBtn" type="primary" onClick={showModal}>Create a new book</Button>
       </Flex>
 
-      <Modal title="Create a new book" open={isModalOpen} onCancel={handleCancel}
+      <Modal id="addBookModal" key="addBookModal" title="Create a new book" open={isModalOpen} onCancel={handleCancelOpenAddModal}
         footer={[
-          <Button key="cancel" onClick={handleCancel}>
+          <Button key="cancel" onClick={handleCancelOpenAddModal}>
             Cancel
           </Button>,
-          <Button key="submit" type="primary" onClick={handAddBook}>
+          <Button key="submit" type="primary" onClick={handleAddBook}>
             Submit
           </Button>
         ]}
@@ -70,11 +55,13 @@ function App() {
         {
           bookInfo && bookInfo.map(e =>
             <InputAddBookInfo
+              key={e.name}
               bookInfo={bookInfo}
               setBookInfo={setBookInfo}
               name={e.name}
               label={e.label}
               value={e.value}
+              addBookInputChange={addBookInputChange}
             />
           )
         }
@@ -83,8 +70,12 @@ function App() {
 
       <div>
         <BookList
+          {...props}
+          bookList={bookList}
+          setBookList={setBookList}
           bookInfo={bookInfo}
           setBookInfo={setBookInfo}
+          updateBookInfoChange={updateBookInfoChange}
         />
       </div>
     </div>

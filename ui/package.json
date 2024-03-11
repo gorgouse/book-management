@@ -5,7 +5,6 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "antd": "^5.15.0",
     "axios": "^1.5.1",
     "react": "^18.2.0",
@@ -16,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage=true",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -36,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/user-event": "^14.5.2",
+    "jest": "^27.5.1"
   }
 }

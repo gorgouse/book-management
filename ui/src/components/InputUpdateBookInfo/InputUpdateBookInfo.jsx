@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './index.css';
 import { Input, Row, Col } from 'antd';
 
@@ -7,25 +6,15 @@ function InputUpdateBookInfo(
         isDetail,
         updateId,
         updateBookList,
-        setUpdateBook, 
+        setUpdateBook,
         name,
         label,
-        value
+        value,
+        updateBookInfoChange
     }
 ) {
-    const handleChange = (e) => {
-        const curVal = e.target.value;
-
-        const newUpdateBookList = Array.from(updateBookList);
-        newUpdateBookList.forEach(e => {
-            if (e.name === name) {
-                e.value = curVal;
-            }
-        });
-        setUpdateBook({
-            updateId,
-            updateBookList: newUpdateBookList
-        });
+    const handleUpdateBookInfoChange = (e) => {
+        updateBookInfoChange(e, updateId, name, updateBookList, setUpdateBook)
     }
 
     return (
@@ -36,7 +25,7 @@ function InputUpdateBookInfo(
             <Col className="gutter-row" span={4}>
                 {
                     isDetail ? <Input disabled className='form-input' placeholder="input title" value={value} />
-                        : <Input className='form-input' placeholder="input title" value={value} onChange={handleChange} />
+                        : <Input className='form-input' placeholder={"input "+name} value={value} onChange={handleUpdateBookInfoChange} />
                 }
             </Col>
         </Row>
