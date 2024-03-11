@@ -7,9 +7,11 @@ test('Create a new book', async () => {
   const mockDeepCopyArray = jest.fn();
   const mockSetBookInfo = jest.fn();
   const mockCancelOpenAddModal = jest.fn();
+  const mockRetrieveBooks = jest.fn();
 
   render(
     <App
+    retrieveBooks={mockRetrieveBooks}
       deepCopyArray={mockDeepCopyArray}
       addBook={mockSetBookInfo}
       cancelOpenAddModal={mockCancelOpenAddModal}
