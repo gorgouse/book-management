@@ -25,7 +25,7 @@ function InputUpdateBookInfo(
             <Col className="gutter-row" span={4}>
                 {
                     isDetail ? <Input disabled className='form-input' placeholder="input title" value={value} />
-                        : <Input className='form-input' placeholder={"input "+name} value={value} onChange={handleUpdateBookInfoChange} />
+                        : <Input className='form-input' placeholder={"please input " + name} value={value} onChange={handleUpdateBookInfoChange} />
                 }
             </Col>
         </Row>

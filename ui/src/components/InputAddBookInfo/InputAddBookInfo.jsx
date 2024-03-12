@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import './index.css';
 import { Input, Row, Col } from 'antd';
 
-function InputAddBookInfo({...props}) {
+function InputAddBookInfo({ ...props }) {
 
     const { bookInfo, setBookInfo, name, label, value, addBookInputChange } = props;
 
@@ -16,7 +16,7 @@ function InputAddBookInfo({...props}) {
                 <div className='input-label'>{label}:</div>
             </Col>
             <Col className="gutter-row" span={4}>
-                <Input className='form-input' placeholder="input title" value={value} onChange={handleAddBookInputChange} />
+                <Input className='form-input' placeholder={"please input " + name} value={value} onChange={handleAddBookInputChange} />
             </Col>
         </Row>
     )

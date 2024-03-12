@@ -33,7 +33,7 @@ function App(props) {
   }, []);
 
   const handleAddBook = useCallback(async () => {
-    await addBook(bookInfo, setIsModalOpen, setBookInfo, initBookData,messageApi);
+    await addBook(bookInfo, setIsModalOpen, setBookInfo, initBookData, messageApi, setBookList);
     //refresh api
     retrieveBooks(setBookList);
   }, []);

@@ -50,7 +50,7 @@ const updateBookInfoChange = (e, updateId, name, updateBookList, setUpdateBook) 
 }
 
 //add book
-const addBook = (bookInfo, setIsModalOpen, setBookInfo, initBookData, messageApi) => {
+const addBook = (bookInfo, setIsModalOpen, setBookInfo, initBookData, messageApi, setBookList) => {
   const bookData = {};
   bookInfo.forEach(e => { bookData[e.name] = e.value });
 
@@ -66,6 +66,7 @@ const addBook = (bookInfo, setIsModalOpen, setBookInfo, initBookData, messageApi
       if (data.status == 200 || data == true) {
         setIsModalOpen(false);
         setBookInfo(deepCopyArray(initBookData));
+        retrieveBooks(setBookList)
       } else {
         handleResponseMsg(messageApi, data.message, 'error')
       }
