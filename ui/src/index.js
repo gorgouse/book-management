@@ -4,13 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const initBookData = () => [
-  { name: 'title', label: 'Title', value: '' },
-  { name: 'author', label: 'Author', value: '' },
-  { name: 'pubYear', label: 'Public year', value: '' },
-  { name: 'isbn', label: 'ISBN', value: '' }
-]
-
 const deepCopyArray = (array) => {
   const data = { array };
   const newData = JSON.parse(JSON.stringify(data));
@@ -49,9 +42,11 @@ const updateBookInfoChange = (e, updateId, name, updateBookList, setUpdateBook) 
   });
 }
 
-const addBook = (bookInfo, setIsModalOpen, setBookInfo) => {
+//add book
+const addBook = (bookInfo, setIsModalOpen, setBookInfo,initBookData) => {
   const bookData = {};
   bookInfo.forEach(e => { bookData[e.name] = e.value });
+
   fetch('http://localhost:8080/book/addBook', {
     method: 'POST',
     headers: {
@@ -66,8 +61,8 @@ const addBook = (bookInfo, setIsModalOpen, setBookInfo) => {
   setBookInfo(deepCopyArray(initBookData));
 };
 
- // submit for updating the book
- const updateBookDetail = (id, updateBookList, setCurBook, setIsModalOpen) => {
+// submit for updating the book
+const updateBookDetail = (id, updateBookList, setCurBook, setIsModalOpen) => {
   const bookData = { id };
   updateBookList.forEach(e => { bookData[e.name] = e.value });
   fetch('http://localhost:8080/book/updateBook/', {
@@ -88,17 +83,17 @@ const addBook = (bookInfo, setIsModalOpen, setBookInfo) => {
 };
 
 
-  //delete the book
-  const deleteBook = (id, setBookList) => {
-    fetch('http://localhost:8080/book/deleteBook?id=' + id, {
-      method: 'DELETE',
-    })
-      .then(response => response.json())
-      .then(data => retrieveBooks(setBookList))
-      .catch(error => console.error('Error:', error));
-  }
+//delete the book
+const deleteBook = (id, setBookList) => {
+  fetch('http://localhost:8080/book/deleteBook?id=' + id, {
+    method: 'DELETE',
+  })
+    .then(response => response.json())
+    .then(data => retrieveBooks(setBookList))
+    .catch(error => console.error('Error:', error));
+}
 
-const cancelOpenAddModal = (setIsModalOpen, setBookInfo) => {
+const cancelOpenAddModal = (setIsModalOpen, setBookInfo, initBookData) => {
   setIsModalOpen(false);
   setBookInfo(deepCopyArray(initBookData));
 }
@@ -110,7 +105,6 @@ root.render(
       retrieveBooks={retrieveBooks}
       updateBookDetail={updateBookDetail}
       deleteBook={deleteBook}
-      initBookData={initBookData}
       deepCopyArray={deepCopyArray}
       addBook={addBook}
       cancelOpenAddModal={cancelOpenAddModal}

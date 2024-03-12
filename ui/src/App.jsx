@@ -7,7 +7,7 @@ import { Button, Flex, Modal } from 'antd';
 
 function App(props) {
 
-  const { deepCopyArray, addBook, cancelOpenAddModal, addBookInputChange, updateBookInfoChange } = props;
+  const { deepCopyArray, retrieveBooks, addBook, cancelOpenAddModal, addBookInputChange, updateBookInfoChange } = props;
 
   const initBookData = useMemo(() => [
     { name: 'title', label: 'Title', value: '' },
@@ -27,12 +27,14 @@ function App(props) {
   }, []);
 
   const handleCancelOpenAddModal = useCallback(() => {
-    cancelOpenAddModal(setIsModalOpen, setBookInfo);
+    cancelOpenAddModal(setIsModalOpen, setBookInfo, initBookData);
   }, []);
 
-  const handleAddBook = useCallback(() => {
-    addBook(bookInfo, setIsModalOpen, setBookInfo);
-  }, [bookInfo]);
+  const handleAddBook = useCallback(async () => {
+    await addBook(bookInfo, setIsModalOpen, setBookInfo, initBookData);
+    //refresh api
+    retrieveBooks(setBookList);
+  }, []);
 
 
 
@@ -71,6 +73,7 @@ function App(props) {
       <div>
         <BookList
           {...props}
+          retrieveBooks={retrieveBooks}
           bookList={bookList}
           setBookList={setBookList}
           bookInfo={bookInfo}
