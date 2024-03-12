@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const handleResponseMsg = (messageApi, msg, type) => {
+  messageApi.open({
+    type,
+    content: msg
+  });
+}
+
 const deepCopyArray = (array) => {
   const data = { array };
   const newData = JSON.parse(JSON.stringify(data));
@@ -43,7 +50,7 @@ const updateBookInfoChange = (e, updateId, name, updateBookList, setUpdateBook) 
 }
 
 //add book
-const addBook = (bookInfo, setIsModalOpen, setBookInfo,initBookData) => {
+const addBook = (bookInfo, setIsModalOpen, setBookInfo, initBookData, messageApi) => {
   const bookData = {};
   bookInfo.forEach(e => { bookData[e.name] = e.value });
 
@@ -55,10 +62,15 @@ const addBook = (bookInfo, setIsModalOpen, setBookInfo,initBookData) => {
     body: JSON.stringify(bookData),
   })
     .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-  setIsModalOpen(false);
-  setBookInfo(deepCopyArray(initBookData));
+    .then(data => {
+      if (data.status == 200 || data == true) {
+        setIsModalOpen(false);
+        setBookInfo(deepCopyArray(initBookData));
+      } else {
+        handleResponseMsg(messageApi, data.message, 'error')
+      }
+    })
+    .catch(error => handleResponseMsg(messageApi, error, 'error'));
 };
 
 // submit for updating the book
@@ -102,6 +114,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App
+      handleResponseMsg={handleResponseMsg}
       retrieveBooks={retrieveBooks}
       updateBookDetail={updateBookDetail}
       deleteBook={deleteBook}

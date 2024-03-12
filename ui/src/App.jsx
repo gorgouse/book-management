@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useMemo, useCallback } from 'react';
 import BookList from './components/BookList/BookList'
 import InputAddBookInfo from './components/InputAddBookInfo/InputAddBookInfo'
-import { Button, Flex, Modal } from 'antd';
+import { Button, Flex, Modal, message } from 'antd';
 
 
 function App(props) {
@@ -22,6 +22,8 @@ function App(props) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [messageApi, contextHolder] = message.useMessage();
+
   const showModal = useCallback(() => {
     setIsModalOpen(true);
   }, []);
@@ -31,7 +33,7 @@ function App(props) {
   }, []);
 
   const handleAddBook = useCallback(async () => {
-    await addBook(bookInfo, setIsModalOpen, setBookInfo, initBookData);
+    await addBook(bookInfo, setIsModalOpen, setBookInfo, initBookData,messageApi);
     //refresh api
     retrieveBooks(setBookList);
   }, []);
@@ -40,6 +42,7 @@ function App(props) {
 
   return (
     <div className='App'>
+      {contextHolder}
       <Flex gap="small" wrap="wrap">
         <Button id="addBookBtn" type="primary" onClick={showModal}>Create a new book</Button>
       </Flex>
